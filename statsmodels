@@ -1,0 +1,28 @@
+from statsmodels.multivariate.pca import PCA
+PCA
+pc = PCA(x)
+Attributes
+
+factors	(array or DataFrame) nobs by ncomp array of of principal components (scores)
+scores	( array or DataFrame) nobs by ncomp array of of principal components - identical to factors
+loadings	(array or DataFrame) ncomp by nvar array of principal component loadings for constructing the factors
+coeff	(array or DataFrame) nvar by ncomp array of principal component loadings for constructing the projections
+projection	(array or DataFrame) nobs by var array containing the projection of the data onto the ncomp estimated factors
+rsquare	(array or Series) ncomp array where the element in the ith position is the R-square of including the fist i principal components. Note: values are calculated on the transformed data, not the original data
+ic	(array or DataFrame) ncomp by 3 array containing the Bai and Ng (2003) Information criteria. Each column is a different criteria, and each row represents the number of included factors.
+eigenvals	(array or Series) nvar array of eigenvalues
+eigenvecs	(array or DataFrame) nvar by nvar array of eigenvectors
+weights	(array) nvar array of weights used to compute the principal components, normalized to unit length
+transformed_data	(array) Standardized, demeaned and weighted data used to compute principal components and related quantities
+cols	(array) Array of indices indicating columns used in the PCA
+rows	(array) Array of indices indicating rows used in the PCA
+
+loadings:因子载荷
+coeff:得分系数
+rsquare:解释的累计方差
+factors:不太明白  好像是综合指标值
+
+因子载荷矩阵是各个原始变量的因子表达式的系数，表达提取的公因子对原始变量的影响程度。因子得分矩阵表示各项指
+标变量与提取的公因子之间的关系，在某一公因子上得分高，表明该指标与该公因子之间关系越密切。简单说，通过因子载荷矩
+阵可以得到原始指标变量的线性组合，如X1=a11*F1+a12*F2+a13*F3,其中X1为指标变量1，a11、a12、a13分别为与变量X1在同一行
+的因子载荷，F1、F2、F3分别为提取的公因子；通过因子得分矩阵可以得到公因子的线性组合，如F1=a11*X1+a21*X2+a31*X3，字母代表的意义同上。
