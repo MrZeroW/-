@@ -26,3 +26,19 @@ factors:不太明白  好像是综合指标值
 标变量与提取的公因子之间的关系，在某一公因子上得分高，表明该指标与该公因子之间关系越密切。简单说，通过因子载荷矩
 阵可以得到原始指标变量的线性组合，如X1=a11*F1+a12*F2+a13*F3,其中X1为指标变量1，a11、a12、a13分别为与变量X1在同一行
 的因子载荷，F1、F2、F3分别为提取的公因子；通过因子得分矩阵可以得到公因子的线性组合，如F1=a11*X1+a21*X2+a31*X3，字母代表的意义同上。
+
+>>import statsmodels.formula.api as smf
+Linear Mixed Effects Models
+#混合效应（所有个体有共同的截距）
+>>md = smf.mixedlm("Weight ~ Time", data, groups=data["Pig"])
+>>mdf = md.fit()
+>>print(mdf.summary())
+#固定效应（每个个体都有一个截距）
+#mle fe
+md = smf.MixedLM(endog=mydata['Ri_Rf'],exog=mydata[['Rm_Rf' ,'HML', 'SMB', 'ISI','LG']],groups=mydata["code"])
+mdf = md.fit()
+print mdf.summary()
+#随机效应
+m = smf.MixedLM(endog=mydata1['Ri_Rf'],exog=mydata1[['Rm_Rf' ,'HML', 'SMB', 'ISI','LG']],exog_re=mydata1[['date','code']],groups=mydata1["code"])
+mdf = m.fit()
+print mdf.summary()
